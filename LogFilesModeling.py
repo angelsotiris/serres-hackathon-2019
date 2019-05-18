@@ -1,17 +1,41 @@
 from sklearn.cluster import KMeans
 import numpy as np
 
+class Date:
+    def __init__(self,year,month,day,hours,minutes,seconds,UTC):
+        self.year = year
+        self.month = month
+        self.day = day
+        self.hours = hours
+        self.minutes =  minutes
+        self.seconds = seconds
+        self.UTC = UTC
+
 
 class LogLine:
-    def __init__(self, IP, date, requestType, requestPath, response):
+    def __init__(self, IP, date, requestType, requestPath, response,size):
         self.IP = IP
-        self.date = date
+        dateSplitted = date.split('/')
+        day = dateSplitted[0]
+        month = dateSplitted[1]
+        rest = dateSplitted[2]
+        restSplitted = rest.split(':')
+        year = restSplitted[0]
+        hours = restSplitted[1]
+        minutes = restSplitted[2]
+        restSplitted2 = restSplitted[3].split('+')
+        
+        seconds = restSplitted2[0]
+        UTC = restSplitted2[1]
+        self.Fdate = Date(year,month,day,hours,minutes,seconds,UTC)
         self.requestType = requestType
         self.requestPath = requestPath
         self.response = response
+        self.size = size
     
 
 
+    
 
 def readFile(filename):
     with open(filename,'r') as file:
@@ -20,11 +44,14 @@ def readFile(filename):
         for line in lines:
             splitted  = line.split()
             try:
-                del splitted[9],splitted[7],splitted[4],splitted[2],splitted[1]
+                UTC = splitted[4]
+                UTC = UTC.replace(']','')
+                del splitted[7],splitted[4],splitted[2],splitted[1]
                 splitted[2] = splitted[2].replace('\"','')
                 splitted[1] = splitted[1].replace('[','')
-                IP, date, requestType,requestPath,response = splitted[0],splitted[1],splitted[2],splitted[3],splitted[4]
-                simpleLine = LogLine(IP,date,requestType,requestPath,response)
+                fullDate =  splitted[1] + UTC
+                IP, date, requestType,requestPath,response,size= splitted[0],fullDate,splitted[2],splitted[3],splitted[4],splitted[5]
+                simpleLine = LogLine(IP,date,requestType,requestPath,response,size)
                 logFile.append(simpleLine)
             except:
                 print("heeeey errrorr")
@@ -70,7 +97,19 @@ def serverAttacksPercentage(logFile):
     for i in logFile:
         if(i.response=='404'):
             count+=1     
-    return count/len(logFile)  
+    return count/len(logFile)
+
+def createDataSet(logFile):
+    index = 0
+    dataList = []
+    for i in logFile:
+        dataList[index].append(i.IP)
+        dataList[index].append(i.date)
+        dataList[index].append(i.IP)
+        dataList[index].append(i.IP)
+        dataList[index].append(i.IP)
+        
+        
 
 logFile = []
 
