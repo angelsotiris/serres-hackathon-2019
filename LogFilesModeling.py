@@ -24,12 +24,22 @@ def readFile(filename):
                 simpleLine = LogLine(IP,date,requestType,requestPath,response)
                 logFile.append(simpleLine)
             except:
-                print(line + " heeeey errrorr")
+                print("heeeey errrorr")
                 
+###TASK1
+def calculateTraffic(logFile):
+    count = 0
+    for i in logFile:
+        if(i.requestType=='POST'):
+            count += 1
+        elif(i.requestType=='GET'):
+            count += 1
+    return count   
+
+
 
 
 logFile = []
-
 
 readFile('website-access.log.1')
 readFile('website-access.log.2')
@@ -42,7 +52,8 @@ readFile('website-access.log.8')
 readFile('website-access.log.9')
 readFile('website-access.log.10')
 
-
+##TASK1
+print("Count Of Traffic : " + str(calculateTraffic(logFile)))
 
 
 
