@@ -25,7 +25,10 @@ def readFile(filename):
                 logFile.append(simpleLine)
             except:
                 print("heeeey errrorr")
-                
+ 
+
+
+              
 ###TASK1
 def calculateTraffic(logFile):
     count = 0
@@ -36,15 +39,31 @@ def calculateTraffic(logFile):
             count += 1
     return count   
 
-
+    
 ###TASK2
 def requestsWith5xxErrors(logFile):
     count = 0
     for i in logFile:
         if(i.response[0]=='5'):
-            count+=1
-            
+            count+=1     
     return count
+
+
+
+   
+###TASK3
+def differentIPs(logFile):
+    dictionary = {}
+    for i in logFile:
+        if(i.IP in dictionary.keys()):
+            dictionary[i.IP] += 1
+        else:
+            dictionary[i.IP] = 1
+            
+    return dictionary
+
+
+    
 
 logFile = []
 
@@ -58,15 +77,21 @@ readFile('website-access.log.7')
 readFile('website-access.log.8')
 readFile('website-access.log.9')
 readFile('website-access.log.10')
-
+print('-----------------------------') 
 ##TASK1
+print('------------TASK 1-----------') 
 print("Count Of Traffic : " + str(calculateTraffic(logFile)))
 
 ###TASK2
+print('------------TASK 2-----------') 
 print("Count of 5xx Error's Responses : " + str(requestsWith5xxErrors(logFile)))
 
 
-
+###TASK3
+print('------------TASK 3-----------')
+dictionary = differentIPs(logFile)
+print("Count of different IPs : " + str(len(dictionary)))
+    
 
 
 
