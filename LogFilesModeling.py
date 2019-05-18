@@ -5,7 +5,7 @@ class LogLine:
         self.date = date
         self.requestType = requestType
         self.requestPath = requestPath
-        self.repsonse = response
+        self.response = response
     
 
 
@@ -37,7 +37,14 @@ def calculateTraffic(logFile):
     return count   
 
 
-
+###TASK2
+def requestsWith5xxErrors(logFile):
+    count = 0
+    for i in logFile:
+        if(i.response[0]=='5'):
+            count+=1
+            
+    return count
 
 logFile = []
 
@@ -55,7 +62,8 @@ readFile('website-access.log.10')
 ##TASK1
 print("Count Of Traffic : " + str(calculateTraffic(logFile)))
 
-
+###TASK2
+print("Count of 5xx Error's Responses : " + str(requestsWith5xxErrors(logFile)))
 
 
 
