@@ -1,3 +1,6 @@
+from sklearn.cluster import KMeans
+import numpy as np
+
 
 class LogLine:
     def __init__(self, IP, date, requestType, requestPath, response):
@@ -62,8 +65,12 @@ def differentIPs(logFile):
             
     return dictionary
 
-
-    
+def serverAttacksPercentage(logFile):
+    count = 0
+    for i in logFile:
+        if(i.response=='404'):
+            count+=1     
+    return count/len(logFile)  
 
 logFile = []
 
