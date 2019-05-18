@@ -1,0 +1,20 @@
+GET / HTTP/1.1,yes,null
+GET /api/v1/login/ HTTP/1.0,yes,null
+GET /login.php/?username=admin&password=password HTTP/1.0,yes,null
+GET /core/files/js/upload.js/ HTTP/1.0,yes,null
+GET /register.php/ HTTP/1.0,yes,null
+GET /?session=vwdefcwec334scfdjr49ccededfewsd HTTP/1.0,yes,null
+GET /api/v1/customers/ HTTP/1.0,yes,null
+GET /register.php/.well-known/assetlinks.json HTTP/1.0,yes,null
+GET /api/v1/register/.env/README.txt HTTP/1.0,yes,null
+GET /orders.php/ HTTP/1.0,yes,null
+GET /connection.php/ HTTP/1.0,yes,null
+GET /core/files/js/upload.js/ HTTP/1.0,yes,null
+GET /cgi-bin/count.cgi/ HTTP/1.1,yes,null
+POST /api/v1/customers/ HTTP/1.0
+POST /.well-known/assetlinks.json HTTP/1.0
+POST /login.php/ HTTP/1.1
+POST /update.php/ HTTP/1.1
+POST /page/about-us/ HTTP/1.0
+
+
