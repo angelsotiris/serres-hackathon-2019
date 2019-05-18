@@ -1,6 +1,7 @@
 from sklearn.cluster import KMeans
 import numpy as np
 import json, urllib
+import matplotlib.pyplot as plt
 
 
 class Date:
@@ -119,7 +120,28 @@ def createDataSet(logFile):
         dataList[index].append(i.IP)
         dataList[index].append(i.IP)
         
+def attacksPerHour(logFile):
+    hoursDict ={}
+    for i in logFile:
+        if(i.Fdate.hours in hoursDict.keys()):
+            hoursDict[i.Fdate.hours] += 1
+            
+        else:
+            hoursDict[i.Fdate.hours] = 1
+            
+    return hoursDict
         
+
+def calculateRequestsPerCountry():
+    rPerCountry = {}
+    for i in IPsAndCountries:
+        country = IPsAndCountries[i]
+        count = dictionary[i]
+        if(country in rPerCountry.keys()):
+            rPerCountry[country] += count
+        else:
+            rPerCountry[country] = count
+    return rPerCountry
 
 logFile = []
 
@@ -149,8 +171,41 @@ dictionary = differentIPs(logFile)
 print("Count of different IPs : " + str(len(dictionary)))
 ###Rest API 
 ###Send IP and returns Country
+
 IPsAndCountries = {}
 findCountryViaIP(dictionary.keys(),IPsAndCountries)
+HoursDict = {}
+HoursDict = attacksPerHour(logFile)
+
+
+D = {u'Label1':26, u'Label2': 17, u'Label3':30}
+
+plt.plot(HoursDict.keys(),HoursDict.values())
+plt.axis([0,23,min(HoursDict.values()),max(HoursDict.values())])
+plt.xticks(range(len(HoursDict)), list(HoursDict.keys()))
+plt.ylabel('Attacks per time')
+plt.xlabel('Hours of the day')
+# # for python 2.x:
+# plt.bar(range(len(D)), D.values(), align='center')  # python 2.x
+# plt.xticks(range(len(D)), D.keys())  # in python 2.x
+
+plt.show()
+
+
+RequestsPerCountry = calculateRequestsPerCountry()
+
+figureObject, axesObject = plt.subplots()
+axesObject.pie(RequestsPerCountry.values(),labels=RequestsPerCountry.keys())
+
+axesObject.axis('equal')
+
+plt.show()
+
+
+
+
+
+
 
 
 
