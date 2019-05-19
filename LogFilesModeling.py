@@ -1,5 +1,4 @@
-from sklearn.cluster import KMeans
-import numpy as np
+
 import json, urllib
 import matplotlib.pyplot as plt
 import time
@@ -42,11 +41,13 @@ class LogLine:
 
 ###Methon which returns country for each IP
 def findCountryViaIP(IPs,IPsAndCountries):
+    start = time.time()
     for i in IPs:
         with urllib.request.urlopen('http://api.ipstack.com/'+i+'?access_key=844d3b30e00ba26f12ab92f62e33b2d3&format=1') as url:
             data = json.loads(url.read().decode())
             IPsAndCountries[i] = data['country_name']
-        
+    end = time.time()
+    print('Time of findCountryViaIP\'s execution' + str(end - start))    
         
 #Classifier       
 def ClassifyRequests(keyWords,logFile):
@@ -56,7 +57,10 @@ def ClassifyRequests(keyWords,logFile):
                 i.category = 0
                 break
             
-
+def readKeyWords(filename,kewWords):
+    with open(filename,'r') as file:
+        for i in file.readlines():
+            kewWords.append(i)
 def readFile(filename):
     with open(filename,'r') as file:
         lines = file.readlines()
@@ -74,7 +78,7 @@ def readFile(filename):
                 simpleLine = LogLine(IP,date,requestType,requestPath,response,size)
                 logFile.append(simpleLine)
             except:
-                print("heeeey errrorr")
+                print("")
  
 
 
