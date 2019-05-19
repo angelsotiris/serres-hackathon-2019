@@ -1,4 +1,4 @@
-
+import operator
 import json, urllib
 import matplotlib.pyplot as plt
 import time
@@ -36,8 +36,8 @@ class LogLine:
         self.response = response
         self.size = size
         self.category = 1
-    
-        
+        self.attacksType = 'none'
+           
 
 ###Methon which returns country for each IP
 def findCountryViaIP(IPs,IPsAndCountries):
@@ -54,9 +54,16 @@ def ClassifyRequests(keyWords,logFile):
     for i in logFile:
         for keyWord in keyWords:
             word = str(keyWord).replace('\n','')
-            if(word 
-               in i.requestPath):
+            if(word in i.requestPath):
                 i.category = 0
+                break
+            
+def ClassifyAttacks(keyWords,attacksFile,aType):
+    for i in attacksFile:
+        for keyWord in keyWords:
+            word = str(keyWord).replace('\n','')
+            if(word in i.requestPath):
+                i.attacksType = aType
                 break
             
 def readKeyWords(filename):
@@ -122,13 +129,6 @@ def differentIPs(logFile):
             
     return dictionary
 
-def serverAttacksPercentage(logFile):
-    count = 0
-    for i in logFile:
-        if(i.response=='404'):
-            count+=1     
-    return count/len(logFile)
-
         
 def requestsPerHour(logFile):
     hoursDict ={}
@@ -157,11 +157,40 @@ def calculateAttacks(logFile):
     count = 0
     for i in logFile:
         if(i.category==0):
+            attacksFile.append(i)
             count+=1
     return count
 
 
+def lfiAttacks(attacksFile):
+    count = 0
+    for i in attacksFile:
+        if(i.attacksType=='lfi'):
+            count+=1
+    return count
 
+def sqlAttacks(attacksFile):
+    count = 0
+    for i in attacksFile:
+        if(i.attacksType=='sql'):
+            count+=1
+    return count
+
+def xssAttacks(attacksFile):
+    count = 0
+    for i in attacksFile:
+        if(i.attacksType=='xss'):
+            count+=1
+    return count
+
+def calcuateAttacksPerCountry(IPsDict,attacksFile):
+    AttackPerCount={}
+    for i in IPsDict:
+        AttackPerCount[IPsDict[i]] = 0
+    
+    for i in attacksFile:
+        AttackPerCount[IPsDict[i.IP]] += 1
+    return AttackPerCount
 logFile = []
 
 
@@ -192,39 +221,89 @@ dictionary = differentIPs(logFile)
 print("Count of different IPs : " + str(len(dictionary)))
 
 ###TASK 4
+attacksFile = []
 keyWords = readKeyWords('keywords.txt')
 ClassifyRequests(keyWords,logFile)
 countOfAttacks = calculateAttacks(logFile)
-print('------------TASK 3-----------')
-print("Count of attacks : " + str(countOfAttacks))
+print('------------TASK 4-----------')
+print("Attacks Percentage: " + str(countOfAttacks/len(logFile)))
+
+
+###TASK 5
+
+sqlKeyWords = readKeyWords('sqlkeywords.txt')
+lfiKeyWords = readKeyWords('lfikeywords.txt')
+xssKeyWords = readKeyWords('xsskeywords.txt')
+
+ClassifyAttacks(sqlKeyWords,attacksFile,'sql')
+ClassifyAttacks(lfiKeyWords,attacksFile,'lfi')
+ClassifyAttacks(xssKeyWords,attacksFile,'xss')
+
+countOfSqlAttacks = sqlAttacks(attacksFile)
+countOflfiAttacks = lfiAttacks(attacksFile)
+countOfXssAttacks = xssAttacks(attacksFile)
+
+print('------------TASK 5-----------')
+print("SQL Injections: " + str(countOfSqlAttacks))
+print("XSS Attacks: " + str(countOfXssAttacks))
+print("Local File Inclusion attacks: " + str(countOflfiAttacks))
+print("Undefined attacks: " + str(countOfAttacks-countOflfiAttacks-countOfSqlAttacks-countOfXssAttacks))
+
 ###Rest API 
 ###Send IP and returns Country
-'''
+
 IPsAndCountries = {}
 findCountryViaIP(dictionary.keys(),IPsAndCountries)
-'''
+
 HoursDict = {}
 HoursDict = requestsPerHour(logFile)
+###TASK 7
+print('------------TASK 7-----------')
+attacksPerCountry = calcuateAttacksPerCountry(IPsAndCountries,attacksFile)
+maxAttack = max(attacksPerCountry.values())
+countryWithMostAttacks = ''
+for i in attacksPerCountry:
+    if(attacksPerCountry[i] == maxAttack):
+        countryWithMostAttacks = i
+        
+    
+print("Country with most Attacks: " +countryWithMostAttacks )
+
+###TASK 8
+print('------------TASK 8-----------')
+attacksPerHours = requestsPerHour(attacksFile)
+maxHoursAttack = max(attacksPerHours.values())
+hourWithMostAttacks = ''
+for i in attacksPerHours:
+    if(attacksPerHours[i] == maxHoursAttack):
+        hourWithMostAttacks = i
+        
+    
+print("Hour with most Attacks: " +hourWithMostAttacks+':00' )
 
 
+
+###TASK 9
 D = {u'Label1':26, u'Label2': 17, u'Label3':30}
+
 ###PLOTs
 plt.plot(HoursDict.keys(),HoursDict.values())
 plt.axis([0,23,min(HoursDict.values()),max(HoursDict.values())])
 plt.xticks(range(len(HoursDict)), list(HoursDict.keys()))
 plt.ylabel('Attacks per time')
 plt.xlabel('Hours of the day')
+print('------------TASK 9-----------')
 plt.show()
-
-'''
+###TASK 10
 RequestsPerCountry = calculateRequestsPerCountry()
 
 figureObject, axesObject = plt.subplots()
 axesObject.pie(RequestsPerCountry.values(),labels=RequestsPerCountry.keys())
 axesObject.axis('equal')
+print('------------TASK 10-----------')
 plt.show()
 
-'''
+
 
 
 
