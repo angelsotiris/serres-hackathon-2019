@@ -311,6 +311,7 @@ RequestsPerCountry = calculateRequestsPerCountry()
 figureObject, axesObject = plt.subplots()
 axesObject.pie(RequestsPerCountry.values(),labels=RequestsPerCountry.keys())
 axesObject.axis('equal')
+print("\n")
 print('------------TASK 10-----------')
 plt.show()
 
