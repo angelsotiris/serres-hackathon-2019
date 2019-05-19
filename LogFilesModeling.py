@@ -191,6 +191,17 @@ def calcuateAttacksPerCountry(IPsDict,attacksFile):
     for i in attacksFile:
         AttackPerCount[IPsDict[i.IP]] += 1
     return AttackPerCount
+
+
+
+
+
+
+
+
+
+
+
 logFile = []
 
 
@@ -305,8 +316,19 @@ plt.show()
 
 
 
+####BONUS TASK
 
+dangerous = differentIPs(attacksFile)
+print('------------BONUS TASK---------')
 
+mostDangerousIPmax = max(dangerous.values())
+mostDangerousIP = ''
+for i in dangerous:
+    if(dangerous[i] == mostDangerousIPmax):
+        mostDangerousIP = i
+        
+    
+print("Most Dangerous IP: " +mostDangerousIP)
 
 
 
