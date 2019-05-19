@@ -47,7 +47,7 @@ def findCountryViaIP(IPs,IPsAndCountries):
             data = json.loads(url.read().decode())
             IPsAndCountries[i] = data['country_name']
     end = time.time()
-    print('Time of findCountryViaIP\'s execution' + str(end - start))    
+    print('Time of findCountryViaIP\'s execution :' + str(end - start))    
         
 #Classifier       
 def ClassifyRequests(keyWords,logFile):
