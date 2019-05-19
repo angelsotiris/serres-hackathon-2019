@@ -2,7 +2,7 @@ from sklearn.cluster import KMeans
 import numpy as np
 import json, urllib
 import matplotlib.pyplot as plt
-
+import time
 
 class Date:
     def __init__(self,year,month,day,hours,minutes,seconds,UTC):
@@ -13,6 +13,7 @@ class Date:
         self.minutes =  minutes
         self.seconds = seconds
         self.UTC = UTC
+    
 
 
 class LogLine:
@@ -35,7 +36,9 @@ class LogLine:
         self.requestPath = requestPath
         self.response = response
         self.size = size
+        self.category = 1
     
+        
 
 ###Methon which returns country for each IP
 def findCountryViaIP(IPs,IPsAndCountries):
@@ -45,8 +48,14 @@ def findCountryViaIP(IPs,IPsAndCountries):
             IPsAndCountries[i] = data['country_name']
         
         
-        
-
+#Classifier       
+def ClassifyRequests(keyWords,logFile):
+    for i in logFile:
+        for j in keyWords:
+            if(j in i.responsePath):
+                i.category = 0
+                break
+            
 
 def readFile(filename):
     with open(filename,'r') as file:
@@ -110,17 +119,8 @@ def serverAttacksPercentage(logFile):
             count+=1     
     return count/len(logFile)
 
-def createDataSet(logFile):
-    index = 0
-    dataList = []
-    for i in logFile:
-        dataList[index].append(i.IP)
-        dataList[index].append(i.date)
-        dataList[index].append(i.IP)
-        dataList[index].append(i.IP)
-        dataList[index].append(i.IP)
         
-def attacksPerHour(logFile):
+def requestsPerHour(logFile):
     hoursDict ={}
     for i in logFile:
         if(i.Fdate.hours in hoursDict.keys()):
@@ -143,7 +143,13 @@ def calculateRequestsPerCountry():
             rPerCountry[country] = count
     return rPerCountry
 
+
+
+
+
 logFile = []
+
+
 
 readFile('website-access.log.1')
 readFile('website-access.log.2')
@@ -175,20 +181,16 @@ print("Count of different IPs : " + str(len(dictionary)))
 IPsAndCountries = {}
 findCountryViaIP(dictionary.keys(),IPsAndCountries)
 HoursDict = {}
-HoursDict = attacksPerHour(logFile)
+HoursDict = requestsPerHour(logFile)
 
 
 D = {u'Label1':26, u'Label2': 17, u'Label3':30}
-
+###PLOTs
 plt.plot(HoursDict.keys(),HoursDict.values())
 plt.axis([0,23,min(HoursDict.values()),max(HoursDict.values())])
 plt.xticks(range(len(HoursDict)), list(HoursDict.keys()))
 plt.ylabel('Attacks per time')
 plt.xlabel('Hours of the day')
-# # for python 2.x:
-# plt.bar(range(len(D)), D.values(), align='center')  # python 2.x
-# plt.xticks(range(len(D)), D.keys())  # in python 2.x
-
 plt.show()
 
 
@@ -196,9 +198,7 @@ RequestsPerCountry = calculateRequestsPerCountry()
 
 figureObject, axesObject = plt.subplots()
 axesObject.pie(RequestsPerCountry.values(),labels=RequestsPerCountry.keys())
-
 axesObject.axis('equal')
-
 plt.show()
 
 
