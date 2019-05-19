@@ -24,5 +24,5 @@ Country with most Attacks: China
 ------------TASK 8-----------
 Hour with most Attacks: 20:00
 
-------------TASK 9-----------
+------------TASK 9-----------<br />
 ![alt text](plot1.png)
