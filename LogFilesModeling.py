@@ -52,15 +52,21 @@ def findCountryViaIP(IPs,IPsAndCountries):
 #Classifier       
 def ClassifyRequests(keyWords,logFile):
     for i in logFile:
-        for j in keyWords:
-            if(j in i.responsePath):
+        for keyWord in keyWords:
+            word = str(keyWord).replace('\n','')
+            if(word 
+               in i.requestPath):
                 i.category = 0
                 break
             
-def readKeyWords(filename,kewWords):
+def readKeyWords(filename):
+    listWithKeyWords =[]
     with open(filename,'r') as file:
         for i in file.readlines():
-            kewWords.append(i)
+            listWithKeyWords.append(i)
+            
+        file.close()
+    return listWithKeyWords
 def readFile(filename):
     with open(filename,'r') as file:
         lines = file.readlines()
@@ -79,7 +85,7 @@ def readFile(filename):
                 logFile.append(simpleLine)
             except:
                 print("")
- 
+        file.close()
 
 
               
@@ -147,7 +153,12 @@ def calculateRequestsPerCountry():
             rPerCountry[country] = count
     return rPerCountry
 
-
+def calculateAttacks(logFile):
+    count = 0
+    for i in logFile:
+        if(i.category==0):
+            count+=1
+    return count
 
 
 
@@ -179,11 +190,19 @@ print("Count of 5xx Error's Responses : " + str(requestsWith5xxErrors(logFile)))
 print('------------TASK 3-----------')
 dictionary = differentIPs(logFile)
 print("Count of different IPs : " + str(len(dictionary)))
+
+###TASK 4
+keyWords = readKeyWords('keywords.txt')
+ClassifyRequests(keyWords,logFile)
+countOfAttacks = calculateAttacks(logFile)
+print('------------TASK 3-----------')
+print("Count of attacks : " + str(countOfAttacks))
 ###Rest API 
 ###Send IP and returns Country
-
+'''
 IPsAndCountries = {}
 findCountryViaIP(dictionary.keys(),IPsAndCountries)
+'''
 HoursDict = {}
 HoursDict = requestsPerHour(logFile)
 
@@ -197,13 +216,16 @@ plt.ylabel('Attacks per time')
 plt.xlabel('Hours of the day')
 plt.show()
 
-
+'''
 RequestsPerCountry = calculateRequestsPerCountry()
 
 figureObject, axesObject = plt.subplots()
 axesObject.pie(RequestsPerCountry.values(),labels=RequestsPerCountry.keys())
 axesObject.axis('equal')
 plt.show()
+
+'''
+
 
 
 
