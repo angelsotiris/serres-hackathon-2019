@@ -3,26 +3,33 @@
 Participants: Nousi Christina (crtnousi), Olympia Xenidou (olympiaxen), Prodromos Sarakinou (prosa), Angelousis Sotirios (angelsotiris) 
 
 
--------------------------------------------------------------------------------------------------------------------------------------------
------------------------------
-------------TASK 1-----------
-Count Of Traffic : 86400
-------------TASK 2-----------
-Count of 5xx Error's Responses : 4585
-------------TASK 3-----------
-Count of different IPs : 20
-------------TASK 4-----------
-Attacks Percentage: 0.679525462962963
-------------TASK 5-----------
-SQL Injections: 5845
-XSS Attacks: 7696
-Local File Inclusion attacks: 9478
-Undefined attacks: 35692
-Time of findCountryViaIP's execution :8.259706497192383
-------------TASK 7-----------
-Country with most Attacks: China
-------------TASK 8-----------
-Hour with most Attacks: 20:00
+-------------------------------------------------------------------------------------------------------------------------------------------<br />
+-----------------------------<br />
+------------TASK 1-----------<br />
+Count Of Traffic : 86400<br />
+------------TASK 2-----------<br />
+Count of 5xx Error's Responses : 4585<br />
+------------TASK 3-----------<br />
+Count of different IPs : 20<br />
+------------TASK 4-----------<br />
+Attacks Percentage: 0.679525462962963<br />
+------------TASK 5-----------<br />
+SQL Injections: 5845<br />
+XSS Attacks: 7696<br />
+Local File Inclusion attacks: 9478<br />
+Undefined attacks: 35692<br />
+Time of findCountryViaIP's execution :8.259706497192383<br />
+------------TASK 7-----------<br />
+Country with most Attacks: China<br />
+------------TASK 8-----------<br />
+Hour with most Attacks: 20:00<br />
 
 ------------TASK 9-----------<br />
-![alt text](plot1.png)
+![alt text](plot1.png)<br />
+
+------------TASK 10-----------<br />
+![alt text](plot2.png)<br />
+
+------------BONUS TASK---------<br />
+Most Dangerous IP: 62.109.16.162<br />
+
