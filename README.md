@@ -24,15 +24,18 @@ TASK 7<br />
 Country with most Attacks: China<br />
 TASK <br />
 Hour with most Attacks: 20:00<br />
-
+<br />
+<br />
 <div style="text-align:center">
 TASK 9<br />
 <img align="center" src="plot1.png"/>
 
-
+<br />
+<br />
 TASK 10<br />
 <img src="plot2.png"/><br />
-
+<br />
+<br />
 BONUS TASK<br />
 Most Dangerous IP: 62.109.16.162<br />
 <div>
