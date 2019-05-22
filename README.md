@@ -24,7 +24,6 @@ Time of findCountryViaIP's execution :8.259706497192383<br />
 Country with most Attacks: China<br />
 ------------TASK 8-----------<br />
 Hour with most Attacks: 20:00<br />
-
 ------------TASK 9-----------<br />
 ![alt text](plot1.png)<br />
 
