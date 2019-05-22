@@ -3,7 +3,7 @@
 Participants: Nousi Christina (crtnousi), Olympia Xenidou (olympiaxen), Prodromos Sarakinou (prosa), Angelousis Sotirios (angelsotiris) 
 Problem: https://github.com/serrestech/hackathon/tree/topic<br />
 <b>Results<b><br />
--------------------------------------------------------------------------------------------------------------------------------------<br />
+<hr>
 -----------------------------<br />
 ------------TASK 1-----------<br />
 Count Of Traffic : 86400<br />
