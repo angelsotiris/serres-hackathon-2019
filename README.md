@@ -19,7 +19,6 @@ SQL Injections: 5845<br />
 XSS Attacks: 7696<br />
 Local File Inclusion attacks: 9478<br />
 Undefined attacks: 35692<br />
-
 TASK 7<br />
 Country with most Attacks: China<br />
 TASK <br />
@@ -29,7 +28,6 @@ Hour with most Attacks: 20:00<br />
 <div style="text-align:center">
 TASK 9<br />
 <img align="center" src="plot1.png"/>
-
 <br />
 <br />
 TASK 10<br />
