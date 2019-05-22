@@ -1,10 +1,10 @@
 # serres-hackathon-2019
 
-Participants: Nousi Christina (crtnousi), Olympia Xenidou (olympiaxen), Prodromos Sarakinou (prosa), Angelousis Sotirios (angelsotiris) 
+<center>Participants: Nousi Christina (crtnousi), Olympia Xenidou (olympiaxen), Prodromos Sarakinou (prosa), Angelousis Sotirios (angelsotiris) 
 Problem: https://github.com/serrestech/hackathon/tree/topic<br />
 <b>Results<b><br />
 <hr>
------------------------------<br />
+<hr>
 ------------TASK 1-----------<br />
 Count Of Traffic : 86400<br />
 ------------TASK 2-----------<br />
@@ -33,3 +33,4 @@ Hour with most Attacks: 20:00<br />
 ------------BONUS TASK---------<br />
 Most Dangerous IP: 62.109.16.162<br />
 
+</center>
